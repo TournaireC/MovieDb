@@ -1,0 +1,39 @@
+{% extends "backend/backend_layout.twig" %}
+
+{% block title %}
+    Index du Casting
+{% endblock %}
+
+{% block content %}
+    <h1> Index du Casting</h1>
+
+    <table class="table">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Role</th>
+                <th>OrderCredit</th>
+                <th>Actions</th>
+            </tr>
+        </thread>
+        <tbody>
+        {% for casting in castings %}
+            <tr>
+                <td>{{ casting.id }}</td>
+                <td>{{ casting.role}}</td>
+                <td>{{ casting.orderCredit }}</td>
+                <td>
+                    <a href="{{ path('backend_casting_show', {'id': casting.id}) }}">Show</a>
+                    <a href="{{ path('backend_casting_edit', {'id': casting.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Rien en Base.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_casting_new') }}">Nouvelle Entrée</a>
+{% endblock %}
